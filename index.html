@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,69 +16,69 @@
       justify-content: center;
       align-items: center;
       font-family: 'Segoe UI', sans-serif;
-    }@keyframes gradientBG {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
 
-.container {
-  text-align: center;
-}
-h1 {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 3em;
-  color: #ffffff;
-  margin-bottom: 40px;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-}
-.btn {
-  padding: 15px 30px;
-  margin: 10px;
-  border: none;
-  border-radius: 10px;
-  font-size: 1.2em;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-#yesBtn {
-  background-color: #4caf50;
-  color: white;
-}
-#noBtn {
-  background-color: #f44336;
-  color: white;
-  position: relative;
-}
-#popup {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  justify-content: center;
-  align-items: center;
-}
-.popup-content {
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-.popup-content button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 1em;
-  border: none;
-  border-radius: 8px;
-  background-color: #2196f3;
-  color: white;
-  cursor: pointer;
-}
-
+    .container {
+      text-align: center;
+    }
+    h1 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 3em;
+      color: #ffffff;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    }
+    .btn {
+      padding: 15px 30px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    #yesBtn {
+      background-color: #4caf50;
+      color: white;
+    }
+    #noBtn {
+      background-color: #f44336;
+      color: white;
+      position: relative;
+    }
+    #popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+    }
+    .popup-content {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .popup-content button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      background-color: #2196f3;
+      color: white;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -85,22 +86,37 @@ h1 {
     <h1>Lucas Rodriguez es corno?</h1>
     <button class="btn" id="yesBtn">SI</button>
     <button class="btn" id="noBtn">NO</button>
-  </div>  <div id="popup">
+  </div>
+  <div id="popup">
     <div class="popup-content">
       <h2>Ya sabíamos que sí eras</h2>
       <button onclick="closePopup()">Cerrar</button>
     </div>
-  </div>  <script>
+  </div>
+  <script>
     const noBtn = document.getElementById('noBtn');
     const yesBtn = document.getElementById('yesBtn');
     const popup = document.getElementById('popup');
 
-    noBtn.addEventListener('mouseover', () => {
+    function moveButton() {
       const randX = Math.floor(Math.random() * (window.innerWidth - noBtn.offsetWidth));
       const randY = Math.floor(Math.random() * (window.innerHeight - noBtn.offsetHeight));
       noBtn.style.position = 'absolute';
       noBtn.style.left = randX + 'px';
       noBtn.style.top = randY + 'px';
+    }
+
+    // PC
+    noBtn.addEventListener('mouseover', moveButton);
+    // Celulares
+    noBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      moveButton();
+    });
+    // Extra por si tocan rápido
+    noBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      moveButton();
     });
 
     yesBtn.addEventListener('click', () => {
@@ -110,5 +126,6 @@ h1 {
     function closePopup() {
       popup.style.display = 'none';
     }
-  </script></body>
+  </script>
+</body>
 </html>
